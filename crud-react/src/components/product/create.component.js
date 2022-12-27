@@ -13,11 +13,13 @@ export default function CreateProduct() {
   const [title, setTitle] = useState("")
   const [description, setDescription] = useState("")
   const [image, setImage] = useState()
+  const [category, setcategory] = useState({})
   const [validationError,setValidationError] = useState({})
 
   const changeHandler = (event) => {
 		setImage(event.target.files[0]);
 	};
+
 
   const createProduct = async (e) => {
     e.preventDefault();
@@ -100,6 +102,53 @@ export default function CreateProduct() {
                         <Form.Control type="file" onChange={changeHandler} />
                       </Form.Group>
                     </Col>
+                  </Row>
+       <Row> 
+                      <Col>
+                         <Form.Group controlId="category">
+                            <Form.Label>Category</Form.Label>
+                            {['checkbox'].map((type) => (
+        <div key={`inline-${type}`} className="mb-3">
+          <Form.Check
+            inline
+            label="Men"
+            name="group1"
+            type={type}
+            id={`inline-${type}-1`}  value={category} onChange={(event)=>{
+              setcategory(event.target.value)
+            }}
+          />
+          <Form.Check
+            inline
+            label="Women"
+            name="group1"
+            type={type}
+            id={`inline-${type}-2`}  value={category} onChange={(event)=>{
+              setcategory(event.target.value)
+            }}
+          />
+          <Form.Check
+            inline
+           
+            label="Kids"
+            type={type}
+            id={`inline-${type}-3`}  value={category} onChange={(event)=>{
+              setcategory(event.target.value)
+            }}
+          />
+        </div>
+      ))}
+                        </Form.Group> 
+                         {/* <Form.Select aria-label="Default select example"  value={category} onChange={(event)=>{
+                              setcategory(event.target.value)
+                            }}>
+      <option>Open this select menu</option>
+      <option value="men">Men</option>
+      <option value="women">Women</option>
+      <option value="kid">Kids</option>
+    </Form.Select> */}
+   
+                      </Col>  
                   </Row>
                   <Button variant="primary" className="mt-2" size="lg" block="block" type="submit">
                     Save
